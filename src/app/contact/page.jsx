@@ -36,7 +36,7 @@ const ContactPage = () => {
 
             alert('Form submitted successfully!');
         } catch (error) {
-            console.error('Error submitting form:', error);
+            console.error('Error submitting form:', error.response.data);
             // Error toast
             alert('An error occurred. Please try again later.');
         } finally {
