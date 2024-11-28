@@ -1,12 +1,16 @@
 'use client';
 
 import Loading from '@/components/Loading'; // Make sure this component exists
-import { toast } from '@/hooks/use-toast'; // Ensure the toast hook is correctly implemented
+
 import { useState } from 'react';
 import axios from 'axios';
+import toast from 'react-hot-toast';
+
+
 
 
 const ContactPage = () => {
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -33,16 +37,17 @@ const ContactPage = () => {
 
         try {
             const response = await axios.post('/api/contact', formData);
-
-            alert('Form submitted successfully!');
+            toast.success("Form submitted successfully.")
         } catch (error) {
             console.error('Error submitting form:', error.response.data);
             // Error toast
-            alert('An error occurred. Please try again later.');
+            toast.error('Something went wrong.')
         } finally {
             setLoading(false);
         }
     };
+
+    // const notify = () => toast('Here is your toast.');
 
     return (
         <div className="py-20 px-8 bg-gray-100">
